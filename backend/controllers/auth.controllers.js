@@ -4,6 +4,11 @@ export const signUp = async (req,res) =>{
     try {
         const {firstname,lastname,userName,email,password} = req.body;
 
+        if (!firstname, !lastname, !userName, !email, !password) {
+                return res.status(400).json({message:"send all details"})
+        
+        }
+
         // ========= 2nd Step === check have a user in DB ======
         let existUser = await User.findOne({email});
         if (existUser) {
@@ -11,9 +16,14 @@ export const signUp = async (req,res) =>{
         }
 
         // ========= 3rd Step === hash Password ======
-
         const hashPassword = await bcrypt.hash(password,15)
 
+        // ========= 4th Step ===User Create ======
+
+        const user  = await User.create({
+           firstname,lastname,userName,email,
+           password:hashPassword
+        });
 
 
 
