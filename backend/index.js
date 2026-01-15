@@ -12,6 +12,8 @@ app.get("/" , (req,res) =>{
 });
 
 
+
+// === Port ===
 app.listen( port , () =>{
     connectDB()
     console.log(`server stated at ${port} `);
