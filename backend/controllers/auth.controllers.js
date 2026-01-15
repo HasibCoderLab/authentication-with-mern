@@ -22,7 +22,9 @@ export const signIn = async (req, res) => {
         });
 
         // ========== 5th  user Info ============
-        return res.status(201).json({ user })
+        return res.status(201).json({ user:{
+            firstname, lastname, userName, email,
+        }});
 
 
     } catch (error) {
