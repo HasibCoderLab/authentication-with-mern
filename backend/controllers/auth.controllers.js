@@ -1,8 +1,9 @@
 import express, { Router }  from "express";
-import { signUp } from "../routes/auth.routes.js";
+import { signUp } from "../routes/auth.routes";
 
-const authRouter = express(Router());
+const authRoute = express(Router());
 
-authRouter.post("/signup" , signUp )
+authRoute.post("/sighin" , signUp)
 
-export default authRouter
+
+export default authRoute;
