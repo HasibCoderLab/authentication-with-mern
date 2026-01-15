@@ -1,3 +1,4 @@
+import generateToken from "../config/token.js";
 import User from "../model/user.model.js";
 import bcrypt from "bcryptjs"
 export const signIn = async (req, res) => {
@@ -21,10 +22,15 @@ export const signIn = async (req, res) => {
             password: hashPassword
         });
 
+        //  ============== 5th fun  for  generate Token =========== 
+        let token = generateToken(user._id);
+
         // ========== 5th  user Info ============
-        return res.status(201).json({ user:{
-            firstname, lastname, userName, email,
-        }});
+        return res.status(201).json({
+            user: {
+                firstname, lastname, userName, email,
+            }
+        });
 
 
     } catch (error) {
