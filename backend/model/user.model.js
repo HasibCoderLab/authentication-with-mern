@@ -21,13 +21,16 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,       
+        required: true,
     },
-    profile:{
-        type:String,
-        required:false
-    }
-}, {timestamps:true});
-const User = mongoose.model("User",userSchema);
+    profile: {
+        type: String,
+        required: false
+    },
+
+}, {
+    timestamps: true
+});
+const User = mongoose.model("User", userSchema);
 
 export default User
