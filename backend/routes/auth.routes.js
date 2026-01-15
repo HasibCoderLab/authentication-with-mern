@@ -1,11 +1,11 @@
 
 import express, { Router }  from "express";
-import { signUp } from "../controllers/auth.controllers.js";
+import { signIn } from "../controllers/auth.controllers.js";
 
 
 const authRoute = express(Router());
 
-authRoute.post("/sighin" , signUp)
+authRoute.post("/sighin" , signIn)
 
 
 export default authRoute;
