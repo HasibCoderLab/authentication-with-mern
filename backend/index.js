@@ -2,7 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 dotenv.config()
 
-let app = express()
+let app = express();
 let port = process.env.PORT || 4000;
 
 app.get("/" , (req,res) =>{
@@ -13,4 +13,4 @@ app.get("/" , (req,res) =>{
 app.listen( port , () =>{
     console.log(`server stated at ${port} `);
     
-})
+});
