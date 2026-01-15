@@ -6,6 +6,7 @@ import authRoute from "./routes/auth.routes.js";
 let app = express();
 let port = process.env.PORT || 4000;
 
+app.use(express.json())
 app.use("/api",authRoute); 
 
 // ======== Simple route ==== 

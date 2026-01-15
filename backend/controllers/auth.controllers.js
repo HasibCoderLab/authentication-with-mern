@@ -4,7 +4,7 @@ export const signUp = async (req, res) => {
     try {
         const { firstname, lastname, userName, email, password } = req.body;
 
-        if (!firstname, !lastname, !userName, !email, !password) {
+        if (!firstname ||  !lastname || !userName || !email || !password) {
             return res.status(400).json({ message: "send all details" })
 
         }
