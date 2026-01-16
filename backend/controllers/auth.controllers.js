@@ -88,7 +88,17 @@ export const login = async (req, res) => {
             httpOnly: true,
             secure: process.env.NODE_ENVIRONMENT == "production",
             sameSite: "strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 7*24*60*60*1000
+        });
+
+        // ========== 6th  user Info ============
+        return res.status(200).json({
+            user: {
+                firstname: exsitUser.firstname,
+                lastname: exsitUser.lastname,
+                userName: exsitUser.userName,
+                email: exsitUser.email,
+            }
         });
 
     } catch (error) {
