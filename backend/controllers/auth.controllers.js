@@ -25,6 +25,14 @@ export const signIn = async (req, res) => {
         //  ============== 5th fun  for  generate Token =========== 
         let token = generateToken(user._id);
 
+        // ========= 6th stpe  create cookie ====
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENVIRONMENT == "production",
+            samesite:"strict",
+            maxAge:7*24*60*60*1000
+        });
+
         // ========== 5th  user Info ============
         return res.status(201).json({
             user: {
