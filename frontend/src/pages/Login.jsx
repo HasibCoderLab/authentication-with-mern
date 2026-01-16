@@ -1,9 +1,64 @@
-import React from 'react'
+import { useContext, useState } from "react"
+import dp from "../assets/dp.jpg"
+import { dataContext } from "../context/userContext"
+import axios from "axios"
 
-const Login = () => {
-  return (
-    <div>Login</div>
-  )
+const login = () => {
+
+    let { serverUrl } = useContext(dataContext);
+
+    // ========= useStates ============
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post(
+                serverUrl + "/api/login",
+                { email, password },
+                { withCredentials: true }
+            );
+
+            console.log(res.data);
+        } catch (error) {
+            console.log(error.response?.data || error.message);
+        }
+
+    }
+
+
+    return (
+        <div className='w-full h-screen bg-black flex items-center justify-center'>
+            <div className='w-[90%] max-w-125 h-125 bg-[#141f1f] rounded flex flex-col justify-center items-center gap-5'>
+                <h1 className="text-white text-[20px] font-semibold "> Log in</h1>
+                {/* ============= Form  =============  */}
+                <form className=' w-full flex flex-col justify-center items-center gap-5' onSubmit={handleSignUp}>
+
+
+                    {/* ================ infut field ============= */}
+
+                    <input type="email" placeholder='Enter Email'
+                        className='w-[80%]  h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                        value={email} onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    <input type="password" placeholder='Enter Password'
+                        className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                        value={password} onChange={(e) => setPassword(e.target.value)}
+
+
+                    />
+                    <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
+                    "
+                    >Login </button>
+
+                </form >
+            </div>
+
+        </div>
+    )
 }
 
-export default Login
+export default login

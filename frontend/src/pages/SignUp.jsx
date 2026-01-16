@@ -81,7 +81,7 @@ const SignUp = () => {
                    />
                     <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
                     "
-                    >Login </button>
+                    >SignUp </button>
                    
                 </form >
             </div>
