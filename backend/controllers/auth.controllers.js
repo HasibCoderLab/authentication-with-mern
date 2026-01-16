@@ -1,7 +1,7 @@
 import generateToken from "../config/token.js";
 import User from "../model/user.model.js";
 import bcrypt from "bcryptjs"
-export const signIn = async (req, res) => {
+export const signUp = async (req, res) => {
     try {
 
         const { firstname, lastname, userName, email, password } = req.body;
@@ -23,13 +23,19 @@ export const signIn = async (req, res) => {
         });
 
         //  ============== 5th fun  for  generate Token =========== 
-        let token = generateToken(user._id);
+        let token ;
+        try {
+           token =  generateToken(user._id);
+        } catch (error) { 
+         console.log(error );
+            
+        }
 
         // ========= 6th stpe  create cookie ====
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENVIRONMENT == "production",
-            samesite:"strict",
+            sameSite:"strict",
             maxAge:7*24*60*60*1000
         });
 

@@ -3,10 +3,14 @@ import dotenv from "dotenv"
 dotenv.config()
 import connectDB from "./config/db.js";
 import authRoute from "./routes/auth.routes.js";
+import cookieParser from "cookie-parser";
+
+
 let app = express();
 let port = process.env.PORT || 4000;
 
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser())
 app.use("/api",authRoute); 
 
 // ======== Simple route ==== 
