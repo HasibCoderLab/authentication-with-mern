@@ -5,7 +5,7 @@ import axios from "axios"
 
 const SignUp = () => {
 
-    let {serverUrl} = useContext(dataContext);
+    let { serverUrl } = useContext(dataContext);
 
     // ========= useStates ============
     const [firstName, setFirstName] = useState(null)
@@ -14,21 +14,21 @@ const SignUp = () => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
 
- const handleSignUp = (e) =>{
-e.preventDefault();
-try {
-    let data = axios.post(serverUrl+"/api/signup",{
- firstname,
-  lastname,
-   userName,
-    email,
- password
-    },{withCredentials:true});
-} catch (error) {
-    console.log(error.message);
-    
-}
- }
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        try {
+            let data = axios.post(serverUrl + "/api/signup", {
+                firstName,
+                lastName,
+                userName,
+                email,
+                password
+            }, { withCredentials: true });
+        } catch (error) {
+            console.log(error.message);
+
+        }
+    }
 
     return (
         <div className='w-full h-screen bg-black flex items-center justify-center'>
@@ -51,32 +51,32 @@ try {
                         {/* ======================  Input field ========== */}
 
                         <input type="text" placeholder='First  Name'
-                            className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5' 
-                            value={firstName} onChange={(e) =>setFirstName(e.target.value)}
-                            />
+                            className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                            value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                        />
 
                         <input type="text" placeholder='Last  Name'
                             className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
-                             value={lastName} onChange={(e) =>setLastName(e.target.value)}
-                            />
+                            value={lastName} onChange={(e) => setLastName(e.target.value)}
+                        />
 
                         {/* ======================  Input field email,pass,userName ========== */}
                     </div>
                     <input type="text" placeholder='UserName'
                         className='w-[80%] l h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
-                         value={userName} onChange={(e) =>setUserName(e.target.value)}
-                        />
+                        value={userName} onChange={(e) => setUserName(e.target.value)}
+                    />
 
                     <input type="email" placeholder='Enter Email'
                         className='w-[80%]  h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
-                         value={email} onChange={(e) =>setEmail(e.target.value)}
-                        />
+                        value={email} onChange={(e) => setEmail(e.target.value)}
+                    />
 
                     <input type="password" placeholder='Enter Password'
                         className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
-                         value={password} onChange={(e)=>setPassword(e.target.value)}
-                        />
-                    <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg
+                        value={password} onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
                     " onSubmit={handleSignUp}
                     >Login </button>
                 </form>
