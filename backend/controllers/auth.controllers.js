@@ -50,4 +50,12 @@ export const signUp = async (req, res) => {
     } catch (error) {
         return res.status(400).json({ message: "Internal Servel Error" });
     }
-} 
+}
+
+
+
+
+// ================== Login [Api] ============   
+export const login = async(req,res) =>{
+
+}
