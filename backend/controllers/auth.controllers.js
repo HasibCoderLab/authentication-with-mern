@@ -61,10 +61,36 @@ export const login = async (req, res) => {
         const { email, password } = req.body;
 
         // ======= 2nd find and check hava a user in DB  ======
-        let exsitUser = await User.findOne({email});
+        let exsitUser = await User.findOne({ email });
         if (!exsitUser) {
-            return res.status(400).json({message:"user does not exsits"});
+            return res.status(400).json({ message: "user does not exsits" });
         }
+
+        // ====== 3rd  | compare password  ========
+
+        let match = await bcrypt.compare(password, exsitUser.password);
+        if (!match) {
+            return res.status(400).json({ message: "Incorrect PAssword" })
+        }
+        // ========= 4th stpe  generateToken  ====
+
+
+        let token;
+        try {
+            token = generateToken(exsitUser._id);
+        } catch (error) {
+            console.log(error);
+
+        }
+
+        // ========= 5th stpe  create cookie ====
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENVIRONMENT == "production",
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+
     } catch (error) {
         return res.status(400).json({ message: "Internal Servel Error" });
 
