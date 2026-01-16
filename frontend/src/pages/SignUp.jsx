@@ -1,6 +1,16 @@
+import { useState } from "react"
 import dp from "../assets/dp.jpg"
 
 const SignUp = () => {
+
+    const [firstName, setFirstName] = useState(null)
+    const [lastName, setLastName] = useState(null)
+    const [userName, setUserName] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+
+
+
     return (
         <div className='w-full h-screen bg-black flex items-center justify-center'>
             <div className='w-[90%] max-w-125 h-125 bg-[#141f1f] rounded flex flex-col justify-center items-center gap-5'>
@@ -22,21 +32,31 @@ const SignUp = () => {
                         {/* ======================  Input field ========== */}
 
                         <input type="text" placeholder='First  Name'
-                            className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5' />
+                            className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5' 
+                            value={firstName} onChange={(e) =>setFirstName(e.target.value)}
+                            />
 
                         <input type="text" placeholder='Last  Name'
-                            className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5' />
+                            className='w-[50%] h-full bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                             value={lastName} onChange={(e) =>setLastName(e.target.value)}
+                            />
 
                         {/* ======================  Input field email,pass,userName ========== */}
                     </div>
                     <input type="text" placeholder='UserName'
-                        className='w-[80%] l h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5' />
+                        className='w-[80%] l h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                         value={userName} onChange={(e) =>setUserName(e.target.value)}
+                        />
 
                     <input type="email" placeholder='Enter Email'
-                        className='w-[80%]  h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5' />
+                        className='w-[80%]  h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                         value={email} onChange={(e) =>setEmail(e.target.value)}
+                        />
 
                     <input type="password" placeholder='Enter Password'
-                        className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5' />
+                        className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
+                         value={password} onChange={(e)=>setPassword(e.target.value)}
+                        />
                     <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg">Login </button>
                 </form>
             </div>
