@@ -8,14 +8,14 @@ const SignUp = () => {
     let { serverUrl } = useContext(dataContext);
 
     // ========= useStates ============
-    const [firstName, setFirstName] = useState(null)
-    const [lastName, setLastName] = useState(null)
-    const [userName, setUserName] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [userName, setUserName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const handleSignUp = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
             let data = axios.post(serverUrl + "/api/signup", {
                 firstName,
@@ -24,6 +24,8 @@ const SignUp = () => {
                 email,
                 password
             }, { withCredentials: true });
+            console.log(data);
+            
         } catch (error) {
             console.log(error.message);
 
