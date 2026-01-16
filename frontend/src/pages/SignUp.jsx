@@ -17,17 +17,12 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(
-                serverUrl + "/api/signup",
-                {
-                    firstName,
-                    lastName,
-                    userName,
-                    email,
-                    password
-                },
-                { withCredentials: true }
-            );
+          const res = await axios.post(
+  serverUrl + "/api/signup",
+  { firstName, lastName, userName, email, password },
+  { withCredentials: true }
+);
+
             console.log(res.data);
         } catch (error) {
    console.log(error.response?.data || error.message);

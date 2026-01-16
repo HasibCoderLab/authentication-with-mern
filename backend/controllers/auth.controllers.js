@@ -21,12 +21,12 @@ export const signUp = async (req, res) => {
 
         // ============ 4th step user create ==== 
         const user = await User.create({
-    firstName,
-     lastName,
-    userName,
-    email,
-    password: hashPassword
-});
+            firstName,
+            lastName,
+            userName,
+            email,
+            password: hashPassword
+        });
 
 
         //  ============== 5th fun  for  generate Token =========== 
@@ -49,14 +49,20 @@ export const signUp = async (req, res) => {
         // ========== 5th  user Info ============
         return res.status(201).json({
             user: {
-                firstname, lastname, userName, email,
+                firstName,
+                lastName,
+                userName,
+                email,
             }
         });
 
 
+
     } catch (error) {
-        return res.status(400).json({ message: "Internal Servel Error" });
-    }
+    console.error("SignUp Error: ", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+}
+
 }
 
 
@@ -78,7 +84,7 @@ export const login = async (req, res) => {
 
         let match = await bcrypt.compare(password, exsitUser.password);
         if (!match) {
-            return res.status(400).json({ message: "Incorrect PAssword" })
+            return res.status(400).json({ message: "Incorrect Passsword" })
         }
         // ========= 4th stpe  generateToken  ====
 
@@ -94,35 +100,38 @@ export const login = async (req, res) => {
         // ========= 5th stpe  create cookie ====
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENVIRONMENT == "production",
+            secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
-            maxAge: 7*24*60*60*1000
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
         // ========== 6th  user Info ============
         return res.status(200).json({
             user: {
-                firstname: exsitUser.firstname,
-                lastname: exsitUser.lastname,
+                firstName: exsitUser.firstName,
+                lastName: exsitUser.lastName,
                 userName: exsitUser.userName,
                 email: exsitUser.email,
             }
         });
 
     } catch (error) {
-        return res.status(400).json({ message: "Internal Servel Error" });
+    console.error("SignUp Error: ", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+}
 
-    }
 }
 
 
 // ================== logOut [Api] ============ 
 
-export const  logout = async (req,res) =>{
+export const logout = async (req, res) => {
     try {
         res.clearCookie("token");
-        return res.status(200).json({message:"logout successfully"})
+        return res.status(200).json({ message: "logout successfully" })
     } catch (error) {
-        return res.status(400).json({ message: "Internal Servel Error" });       
-    }
+    console.error("SignUp Error: ", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+}
+
 } 
