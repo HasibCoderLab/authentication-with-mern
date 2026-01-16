@@ -1,15 +1,34 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import dp from "../assets/dp.jpg"
+import { dataContext } from "../context/userContext"
+import axios from "axios"
 
 const SignUp = () => {
 
+    let {serverUrl} = useContext(dataContext);
+
+    // ========= useStates ============
     const [firstName, setFirstName] = useState(null)
     const [lastName, setLastName] = useState(null)
     const [userName, setUserName] = useState(null)
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
 
-
+ const handleSignUp = (e) =>{
+e.preventDefault();
+try {
+    let data = axios.post(serverUrl+"/api/signup",{
+ firstname,
+  lastname,
+   userName,
+    email,
+ password
+    },{withCredentials:true});
+} catch (error) {
+    console.log(error.message);
+    
+}
+ }
 
     return (
         <div className='w-full h-screen bg-black flex items-center justify-center'>
@@ -57,7 +76,9 @@ const SignUp = () => {
                         className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
                          value={password} onChange={(e)=>setPassword(e.target.value)}
                         />
-                    <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg">Login </button>
+                    <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg
+                    " onSubmit={handleSignUp}
+                    >Login </button>
                 </form>
             </div>
 
