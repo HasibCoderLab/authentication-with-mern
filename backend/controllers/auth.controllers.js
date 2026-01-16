@@ -1,6 +1,8 @@
 import generateToken from "../config/token.js";
 import User from "../model/user.model.js";
 import bcrypt from "bcryptjs"
+
+// ================== signUp [Api] ============ 
 export const signUp = async (req, res) => {
     try {
 
@@ -55,7 +57,8 @@ export const signUp = async (req, res) => {
 
 
 
-// ================== Login [Api] ============   
+// ================== Login [Api] ============ 
+
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -106,3 +109,15 @@ export const login = async (req, res) => {
 
     }
 }
+
+
+// ================== logOut [Api] ============ 
+
+export const  logout = async (req,res) =>{
+    try {
+        res.clearCookie("token");
+        return res.status(200).json({message:"logout successfully"})
+    } catch (error) {
+        return res.status(400).json({ message: "Internal Servel Error" });       
+    }
+} 
