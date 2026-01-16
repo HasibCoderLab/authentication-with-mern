@@ -6,8 +6,9 @@ import bcrypt from "bcryptjs"
 export const signUp = async (req, res) => {
     try {
 
-        const { firstname, lastname, userName, email, password } = req.body;
-        if (!firstname || !lastname || !userName || !email || !password) {
+        const { firstName, lastName, userName, email, password } = req.body;
+
+        if (!firstName || !lastName || !userName || !email || !password) {
             return res.status(400).json({ message: "send all details" });
         }
         // ========= 2nd Step === check have a user in DB ======
@@ -20,9 +21,13 @@ export const signUp = async (req, res) => {
 
         // ============ 4th step user create ==== 
         const user = await User.create({
-            firstname, lastname, userName, email,
-            password: hashPassword
-        });
+    firstName,
+     lastName,
+    userName,
+    email,
+    password: hashPassword
+});
+
 
         //  ============== 5th fun  for  generate Token =========== 
         let token;

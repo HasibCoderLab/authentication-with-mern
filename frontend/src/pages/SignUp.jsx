@@ -14,30 +14,34 @@ const SignUp = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSignUp = (e) => {
-        e.preventDefault()
+    const handleSignUp = async (e) => {
+        e.preventDefault();
         try {
-            let data = axios.post(serverUrl + "/api/signup", {
-                firstName,
-                lastName,
-                userName,
-                email,
-                password
-            }, { withCredentials: true });
-            console.log(data);
-            
+            const res = await axios.post(
+                serverUrl + "/api/signup",
+                {
+                    firstName,
+                    lastName,
+                    userName,
+                    email,
+                    password
+                },
+                { withCredentials: true }
+            );
+            console.log(res.data);
         } catch (error) {
-            console.log(error.message);
+   console.log(error.response?.data || error.message);
+}
 
-        }
     }
+
 
     return (
         <div className='w-full h-screen bg-black flex items-center justify-center'>
             <div className='w-[90%] max-w-125 h-125 bg-[#141f1f] rounded flex flex-col justify-center items-center gap-5'>
                 <h1 className="text-white text-[20px] font-semibold "> Sign Up</h1>
                 {/* ============= Form  =============  */}
-                <form className=' w-full flex flex-col justify-center items-center gap-5'>
+                <form className=' w-full flex flex-col justify-center items-center gap-5'  onSubmit={handleSignUp}>
 
 
 
@@ -77,11 +81,14 @@ const SignUp = () => {
                     <input type="password" placeholder='Enter Password'
                         className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
                         value={password} onChange={(e) => setPassword(e.target.value)}
-                    />
+                   
+                        
+                   />
                     <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
-                    " onSubmit={handleSignUp}
+                    "
                     >Login </button>
-                </form>
+                   
+                </form >
             </div>
 
         </div>
