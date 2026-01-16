@@ -23,20 +23,20 @@ export const signUp = async (req, res) => {
         });
 
         //  ============== 5th fun  for  generate Token =========== 
-        let token ;
+        let token;
         try {
-           token =  generateToken(user._id);
-        } catch (error) { 
-         console.log(error );
-            
+            token = generateToken(user._id);
+        } catch (error) {
+            console.log(error);
+
         }
 
         // ========= 6th stpe  create cookie ====
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENVIRONMENT == "production",
-            sameSite:"strict",
-            maxAge:7*24*60*60*1000
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
         // ========== 5th  user Info ============
@@ -56,6 +56,17 @@ export const signUp = async (req, res) => {
 
 
 // ================== Login [Api] ============   
-export const login = async(req,res) =>{
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
+        // ======= 2nd find and check hava a user in DB  ======
+        let exsitUser = await User.findOne({email});
+        if (!exsitUser) {
+            return res.status(400).json({message:"user does not exsits"});
+        }
+    } catch (error) {
+        return res.status(400).json({ message: "Internal Servel Error" });
+
+    }
 }
