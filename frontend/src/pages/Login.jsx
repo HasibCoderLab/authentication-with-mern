@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom"
 const Login = () => {
     const navigate = useNavigate()
     
-    let { serverUrl,userData, setUserData } = useContext(dataContext);
+          
+    let { serverUrl,userData, setUserData,getUserData } = useContext(dataContext);
 
     // ========= useStates ============
 
@@ -22,7 +23,9 @@ const Login = () => {
                 { email, password },
                 { withCredentials: true }
             );
-            setUserData(data)
+
+           await getUserData();
+            setUserData(data);
 
             console.log(data);
         } catch (error) {

@@ -23,7 +23,7 @@ const UserContext = ({ children }) => {
     }
   }
   const value = {
-    serverUrl, userData, setUserData
+    serverUrl, userData, setUserData,getUserData
   }
 
   useEffect(() => {

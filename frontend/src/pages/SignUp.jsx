@@ -10,7 +10,7 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    let { serverUrl,userData, setUserData } = useContext(dataContext);
+    let { serverUrl,userData, setUserData,getUserData } = useContext(dataContext);
 
     // ========= useStates ============
     const [firstName, setFirstName] = useState("");
@@ -56,6 +56,7 @@ const SignUp = () => {
                     headers:{"Content-Type":"multipart/form-data"}
                  }
             );
+           await getUserData()
             setUserData(data)
 
             console.log(data);
