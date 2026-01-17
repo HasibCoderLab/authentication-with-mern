@@ -10,7 +10,7 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    let { serverUrl } = useContext(dataContext);
+    let { serverUrl,userData, setUserData } = useContext(dataContext);
 
     // ========= useStates ============
     const [firstName, setFirstName] = useState("");
@@ -49,15 +49,16 @@ const SignUp = () => {
                 formData.append("uploadImage", backendImg);
             }
 
-            const res = await axios.post(
+            const {data} = await axios.post(
                 serverUrl + "/api/signup",formData,
                 
                 { withCredentials: true,
-                    headers:{"Content-Type":"multipart/form-Data"}
+                    headers:{"Content-Type":"multipart/form-data"}
                  }
             );
+            setUserData(data)
 
-            console.log(res.data);
+            console.log(data);
         } catch (error) {
             console.log(error.response?.data || error.message);
         }

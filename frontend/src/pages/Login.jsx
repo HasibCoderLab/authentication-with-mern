@@ -1,12 +1,13 @@
 import { useContext, useState } from "react"
 import dp from "../assets/dp.jpg"
-import { dataContext } from "../context/userContext"
+import { dataContext } from "../context/UserContext"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const navigate = useNavigate()
-    let { serverUrl } = useContext(dataContext);
+    
+    let { serverUrl,userData, setUserData } = useContext(dataContext);
 
     // ========= useStates ============
 
@@ -16,13 +17,14 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(
+            const {data} = await axios.post(
                 serverUrl + "/api/login",
                 { email, password },
                 { withCredentials: true }
             );
+            setUserData(data)
 
-            console.log(res.data);
+            console.log(data);
         } catch (error) {
             console.log(error.response?.data || error.message);
             alert(error.response?.data?.message || "Login failed");
