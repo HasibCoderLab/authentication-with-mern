@@ -5,7 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     
           
     let { serverUrl,userData, setUserData,getUserData } = useContext(dataContext);
@@ -26,6 +26,10 @@ const Login = () => {
 
            await getUserData();
             setUserData(data);
+            
+             if (userData) {               
+                navigate("/home");
+            }
 
             console.log(data);
         } catch (error) {

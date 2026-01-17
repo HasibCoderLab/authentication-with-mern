@@ -56,8 +56,13 @@ const SignUp = () => {
                     headers:{"Content-Type":"multipart/form-data"}
                  }
             );
-           await getUserData()
-            setUserData(data)
+
+           await getUserData();
+            setUserData(data);
+
+            if (userData) {               
+                navigate("/home");
+            }
 
             console.log(data);
         } catch (error) {
