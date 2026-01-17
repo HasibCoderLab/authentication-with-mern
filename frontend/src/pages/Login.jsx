@@ -23,9 +23,11 @@ const Login = () => {
                 { email, password },
                 { withCredentials: true }
             );
+            console.log(data);
+            
 
            await getUserData();
-            setUserData(data);
+            setUserData(data.user);
             
              if (userData) {               
                 navigate("/home");

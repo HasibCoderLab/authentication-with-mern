@@ -58,7 +58,7 @@ const SignUp = () => {
             );
 
            await getUserData();
-            setUserData(data);
+            setUserData(userData.data);
 
             if (userData) {               
                 navigate("/home");
