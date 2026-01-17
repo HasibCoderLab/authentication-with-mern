@@ -1,19 +1,36 @@
 import React, { createContext } from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export const dataContext = createContext()
-const UserContext = ({children}) => {
-const serverUrl = "http://localhost:8000"; 
+const UserContext = ({ children }) => {
 
-const value = {
-    serverUrl
-}
 
+  let [userData, setUserData] = useState("");
+  const serverUrl = "http://localhost:8000";
+
+  const getUserData = async () => {
+    try {
+      let { data } = await axios.get(serverUrl + "/api/getUserData");
+      setUserData(data)
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+  const value = {
+    serverUrl, userData, setUserData
+  }
+
+  useEffect(() => {
+    getUserData()
+  }, [])
   return (
 
-<dataContext.Provider value={value}>
-        {children}
-</dataContext.Provider>
-   
+    <dataContext.Provider value={value}>
+      {children}
+    </dataContext.Provider>
+
   )
 }
 

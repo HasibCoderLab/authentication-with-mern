@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import dp from "../assets/dp.jpg"
-import { dataContext } from "../context/userContext"
+import { dataContext } from "../context/UserContext"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import { useRef } from "react";
@@ -18,11 +18,13 @@ const SignUp = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
+    const [frontendImg, setFrontendImg] = useState(dp);
+    const [backendImg, setBackendImg] = useState("");
 
     const file = useRef(null);
 
-    const [frontendImg, setFrontendImg] = useState(dp);
-    const [backendImg, setBackendImg] = useState("");
+    //  ============  Functions =============
     const handleImg = (e) => {
         let file = e.target.files[0];
         setBackendImg(file);
