@@ -2,8 +2,12 @@ import { useContext, useState } from "react"
 import dp from "../assets/dp.jpg"
 import { dataContext } from "../context/userContext"
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+
+
+    const navigate = useNavigate();
 
     let { serverUrl } = useContext(dataContext);
 
@@ -17,16 +21,16 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-          const res = await axios.post(
-  serverUrl + "/api/signup",
-  { firstName, lastName, userName, email, password },
-  { withCredentials: true }
-);
+            const res = await axios.post(
+                serverUrl + "/api/signup",
+                { firstName, lastName, userName, email, password },
+                { withCredentials: true }
+            );
 
             console.log(res.data);
         } catch (error) {
-   console.log(error.response?.data || error.message);
-}
+            console.log(error.response?.data || error.message);
+        }
 
     }
 
@@ -36,7 +40,7 @@ const SignUp = () => {
             <div className='w-[90%] max-w-125 h-125 bg-[#141f1f] rounded flex flex-col justify-center items-center gap-5'>
                 <h1 className="text-white text-[20px] font-semibold "> Sign Up</h1>
                 {/* ============= Form  =============  */}
-                <form className=' w-full flex flex-col justify-center items-center gap-5'  onSubmit={handleSignUp}>
+                <form className=' w-full flex flex-col justify-center items-center gap-5' onSubmit={handleSignUp}>
 
 
 
@@ -76,14 +80,16 @@ const SignUp = () => {
                     <input type="password" placeholder='Enter Password'
                         className='w-[80%] h-[50%] bg-white outline-none border-none rounded-lg px-2.5 py-1.5'
                         value={password} onChange={(e) => setPassword(e.target.value)}
-                   
-                        
-                   />
+
+
+                    />
                     <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
                     "
                     >SignUp </button>
-                   
-                </form >
+
+                    <p className=" cursor-pointer text-cyan-900">Already Hava an Account <span className="text-cyan-400" onClick={() => navigate("/login")}> login </span>
+                    </p>          
+                          </form >
             </div>
 
         </div>
