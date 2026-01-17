@@ -21,8 +21,8 @@ const SignUp = () => {
 
     const file = useRef(null);
 
-const [frontendImg, setFrontendImg] = useState(dp)
-    const hnadleimg =(e) =>{
+const [frontendImg, setFrontendImg] = useState(dp);
+    const handleImg  =(e) =>{
         console.log(e);
         
     } 
@@ -52,7 +52,7 @@ const [frontendImg, setFrontendImg] = useState(dp)
                 <form className=' w-full flex flex-col justify-center items-center gap-5' onSubmit={handleSignUp}>
 
 
-                    <input type="file" name="" id="" hidden ref={file} onChange={() => hnadleimg()} />
+                    <input type="file" name="" id="" hidden ref={file} onChange={handleImg} />
                     {/* ==== img container ========== */}
                     <div className="w-25 h-25 rounded-full bg-white relative ">
                         <img src={frontendImg} alt="database Picture" className="w-full h-full rounded-full " />
