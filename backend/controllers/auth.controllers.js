@@ -11,6 +11,9 @@ export const signUp = async (req, res) => {
         if (!firstName || !lastName || !userName || !email || !password) {
             return res.status(400).json({ message: "send all details" });
         }
+console.log(req.file);
+
+
         // ========= 2nd Step === check have a user in DB ======
         let exsitUser = await User.findOne({ email });
         if (exsitUser) {
