@@ -30,7 +30,7 @@ const Login = () => {
             setUserData(data.user);
             
              if (userData) {               
-                navigate("/home");
+                navigate("/");
             }
 
             console.log(data);

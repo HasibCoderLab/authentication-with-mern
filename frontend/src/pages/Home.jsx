@@ -1,13 +1,32 @@
 import React, { useContext } from 'react'
 import { dataContext } from '../context/UserContext'
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
    const {userData, setUserData} =  useContext(dataContext);
-  return (
-    <div>
-      {userData.firstName}
-      Hi 
+   let navigate = useNavigate();
+   if (!userData) {
+    navigate("/login")
+   }
+  return ( 
+    <div className=' w-full h-screen bg-[#0ec3c3] flex flex-col items-center justify-center gap-5'>
+
+<div className="w-24 h-24 rounded-full bg-white relative ">
+
+                        <img src={userData.profileImage} alt="database Picture" className="w-full h-full rounded-full " />
+
+                    
+
+                    </div>
+
+   <p className='text-white text-[25px] '>
+    Hey ,  <span className='text-amber-400 font-semibold'> {userData.firstName} </span> Welcome to my website
+      
+    </p>  
+    <button className="bg-[#456f75] text-white  px-2.5 py-1.5 rounded-lg cursor-pointer
+                    "
+                    >Log Out </button>
     </div>
   )
 }

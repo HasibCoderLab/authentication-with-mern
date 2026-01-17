@@ -10,7 +10,7 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    let { serverUrl,userData, setUserData,getUserData } = useContext(dataContext);
+    let { serverUrl, userData, setUserData, getUserData } = useContext(dataContext);
 
     // ========= useStates ============
     const [firstName, setFirstName] = useState("");
@@ -18,7 +18,7 @@ const SignUp = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+
     const [frontendImg, setFrontendImg] = useState(dp);
     const [backendImg, setBackendImg] = useState("");
 
@@ -49,19 +49,21 @@ const SignUp = () => {
                 formData.append("uploadImage", backendImg);
             }
 
-            const {data} = await axios.post(
-                serverUrl + "/api/signup",formData,
-                
-                { withCredentials: true,
-                    headers:{"Content-Type":"multipart/form-data"}
-                 }
+            const { data } = await axios.post(
+                serverUrl + "/api/signup", formData,
+
+                {
+                    withCredentials: true,
+                    headers: { "Content-Type": "multipart/form-data" }
+                }
             );
 
-           await getUserData();
-            setUserData(userData.data);
+            await getUserData();
+            setUserData(data.user);
 
-            if (userData) {               
-                navigate("/home");
+
+            if (userData) {
+                navigate("/");
             }
 
             console.log(data);
