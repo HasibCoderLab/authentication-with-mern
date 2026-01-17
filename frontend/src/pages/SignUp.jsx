@@ -87,7 +87,7 @@ const SignUp = () => {
                     "
                     >SignUp </button>
 
-                    <p className=" cursor-pointer text-cyan-900">Already Hava an Account <span className="text-cyan-400" onClick={() => navigate("/login")}> login </span>
+                    <p className=" cursor-pointer text-cyan-900">Already Have an Account ? <span className="text-cyan-400" onClick={() => navigate("/login")}> login </span>
                     </p>          
                           </form >
             </div>

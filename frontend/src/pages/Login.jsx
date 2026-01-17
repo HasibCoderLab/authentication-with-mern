@@ -2,9 +2,10 @@ import { useContext, useState } from "react"
 import dp from "../assets/dp.jpg"
 import { dataContext } from "../context/userContext"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-
+    const navigate = useNavigate()
     let { serverUrl } = useContext(dataContext);
 
     // ========= useStates ============
@@ -24,7 +25,7 @@ const Login = () => {
             console.log(res.data);
         } catch (error) {
             console.log(error.response?.data || error.message);
-alert(error.response?.data?.message || "Login failed");
+            alert(error.response?.data?.message || "Login failed");
         }
 
 
@@ -55,7 +56,8 @@ alert(error.response?.data?.message || "Login failed");
                     <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
                     "
                     >Login </button>
-
+                    <p className=" cursor-pointer text-cyan-900">Create  an Account <span className="text-cyan-400" onClick={() => navigate("/signup")}> Sign Up </span>
+                    </p>
                 </form >
             </div>
 
