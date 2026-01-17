@@ -2,13 +2,13 @@ import React, { createContext } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
-export const dataContext = createContext()
+export const dataContext = createContext();
 const UserContext = ({ children }) => {
-
-
-  let [userData, setUserData] = useState({});
+let navigate = useNavigate()
+  let [userData, setUserData] = useState("");
   const serverUrl = "http://localhost:8000";
 
   const getUserData = async () => {
@@ -16,8 +16,9 @@ const UserContext = ({ children }) => {
       let { data } = await axios.get(serverUrl + "/api/getUserData",{
        withCredentials: true,
       });
-      setUserData(data)
+      setUserData(data);
     } catch (error) {
+navigate("/login")
       console.log(error);
 
     }
@@ -25,10 +26,11 @@ const UserContext = ({ children }) => {
   const value = {
     serverUrl, userData, setUserData,getUserData
   }
-
   useEffect(() => {
-    getUserData()
-  }, [])
+    getUserData();
+  }, []);
+
+
   return (
 
     <dataContext.Provider value={value}>

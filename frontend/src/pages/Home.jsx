@@ -7,6 +7,7 @@ const Home = () => {
   return (
     <div>
       {userData.firstName}
+      Hi 
     </div>
   )
 }
