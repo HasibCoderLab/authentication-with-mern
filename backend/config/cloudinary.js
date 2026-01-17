@@ -7,7 +7,7 @@ cloudinary.config({
         api_secret:process.env.COULDINARY_API_SECRET // Click 'View API Keys' above to copy your API secret
 });
 
-const uploadImage = async (filePath) =>{
+const uploadOnCloudinary = async (filePath) =>{
     try {
         fs.unlinkSync(filePath)
         let result = cloudinary.uploader.upload(filePath);
@@ -20,3 +20,5 @@ const uploadImage = async (filePath) =>{
         
     }
 }
+
+export default uploadOnCloudinary
