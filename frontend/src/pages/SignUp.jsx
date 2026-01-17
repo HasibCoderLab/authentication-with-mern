@@ -21,17 +21,17 @@ const SignUp = () => {
 
     const file = useRef(null);
 
-const [frontendImg, setFrontendImg] = useState(dp);
-const [backendImg, setBackendImg] = useState("");
-    const handleImg  =(e) =>{
+    const [frontendImg, setFrontendImg] = useState(dp);
+    const [backendImg, setBackendImg] = useState("");
+    const handleImg = (e) => {
         let file = e.target.files[0];
         setBackendImg(file);
         console.log(file);
-        const img = URL.createObjectURL(file)
+        let img = URL.createObjectURL(file)
         setFrontendImg(img)
         console.log(e);
-        
-    } 
+
+    }
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -60,12 +60,17 @@ const [backendImg, setBackendImg] = useState("");
 
                     <input type="file" name="" id="" hidden ref={file} onChange={handleImg} />
                     {/* ==== img container ========== */}
-                    <div className="w-25 h-25 rounded-full bg-white relative ">
+                    <div className="w-24 h-24 rounded-full bg-white relative ">
+
                         <img src={frontendImg} alt="database Picture" className="w-full h-full rounded-full " />
 
-                        <div className="absolute w-full h-full bg-black rounded-full top-0 opacity-0 hover:opacity-30 flex items-center justify-center text-white text-[40px] font-semibold cursor-pointer " onClick={()=>{file.current.click()}}>
+                        <div
+                            className="absolute inset-0 bg-black rounded-full opacity-0 hover:opacity-30 flex items-center justify-center text-white text-[40px] cursor-pointer"
+                            onClick={() => file.current.click()}
+                        >
                             +
                         </div>
+
                     </div>
 
                     <div className='w-[80%] h-12.5 flex  justify-center items-center gap-2.5'>
