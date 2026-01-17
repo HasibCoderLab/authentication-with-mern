@@ -56,7 +56,7 @@ const Login = () => {
                     <button className="bg-[#07c7e4] text-black px-2.5 py-1.5 rounded-lg cursor-pointer
                     "
                     >Login </button>
-                    <p className=" cursor-pointer text-cyan-900">Create  an Account <span className="text-cyan-400" onClick={() => navigate("/signup")}> Sign Up </span>
+                    <p className=" cursor-pointer text-white"> Want create  new account ? <span className="text-cyan-400" onClick={() => navigate("/signup")}> Sign Up </span>
                     </p>
                 </form >
             </div>
