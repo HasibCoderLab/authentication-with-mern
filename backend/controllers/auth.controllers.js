@@ -15,8 +15,9 @@ export const signUp = async (req, res) => {
         }
         // =============== Ypload Picture =========
         let profileImage;
+
         if (req.file) {
-            uploadOnCloudinary(req.file.path)
+            profileImage = await uploadOnCloudinary(req.file.path);
         }
 
 
@@ -37,6 +38,7 @@ export const signUp = async (req, res) => {
             password: hashPassword,
             profileImage
         });
+
 
 
         //  ============== 5th fun  for  generate Token =========== 
@@ -63,7 +65,7 @@ export const signUp = async (req, res) => {
                 lastName,
                 userName,
                 email,
-            profileImage
+                profileImage
 
             }
         });
