@@ -1,14 +1,20 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from "fs"
+import dotenv from "dotenv"
+dotenv.config()
 
-cloudinary.config({
-       cloud_name: process.env.COULDINARY_COULD_NAME, 
-        api_key: process.env.COULDINARY_API_KEY, 
-        api_secret:process.env.COULDINARY_API_SECRET // Click 'View API Keys' above to copy your API secret
-});
+ cloudinary.config({
+            cloud_name: process.env.COULDINARY_COULD_NAME,
+            api_key: process.env.COULDINARY_API_KEY,
+            api_secret: process.env.COULDINARY_API_SECRET 
+        })
 
-const uploadOnCloudinary = async (filePath) =>{
+
+const uploadOnCloudinary = async (filePath) => {
     try {
+
+       ;
+
         if (!filePath) {
             return null
         }
@@ -16,11 +22,11 @@ const uploadOnCloudinary = async (filePath) =>{
         console.log(result);
         fs.unlinkSync(filePath)
         return (await result).secure_url
-        
+
     } catch (error) {
         fs.unlinkSync(filePath);
         console.log(error);
-        
+
     }
 }
 

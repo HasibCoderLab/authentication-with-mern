@@ -1,4 +1,6 @@
+import uploadOnCloudinary from "../config/cloudinary.js";
 import generateToken from "../config/token.js";
+// import { upload } from "../middlewares/multer.js";
 import User from "../model/user.model.js";
 import bcrypt from "bcryptjs"
 
@@ -11,7 +13,11 @@ export const signUp = async (req, res) => {
         if (!firstName || !lastName || !userName || !email || !password) {
             return res.status(400).json({ message: "send all details" });
         }
-console.log(req.file);
+        // =============== Ypload Picture =========
+        let profileImage;
+        if (req.file) {
+            uploadOnCloudinary(req.file.path)
+        }
 
 
         // ========= 2nd Step === check have a user in DB ======
@@ -28,7 +34,8 @@ console.log(req.file);
             lastName,
             userName,
             email,
-            password: hashPassword
+            password: hashPassword,
+            profileImage
         });
 
 
@@ -56,15 +63,17 @@ console.log(req.file);
                 lastName,
                 userName,
                 email,
+            profileImage
+
             }
         });
 
 
 
     } catch (error) {
-    console.error("SignUp Error: ", error);
-    return res.status(500).json({ message: "Internal Server Error" });
-}
+        console.error("SignUp Error: ", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 
 }
 
@@ -119,9 +128,9 @@ export const login = async (req, res) => {
         });
 
     } catch (error) {
-    console.error("SignUp Error: ", error);
-    return res.status(500).json({ message: "Internal Server Error" });
-}
+        console.error("SignUp Error: ", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 
 }
 
@@ -133,8 +142,8 @@ export const logout = async (req, res) => {
         res.clearCookie("token");
         return res.status(200).json({ message: "logout successfully" })
     } catch (error) {
-    console.error("SignUp Error: ", error);
-    return res.status(500).json({ message: "Internal Server Error" });
-}
+        console.error("SignUp Error: ", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
 
 } 

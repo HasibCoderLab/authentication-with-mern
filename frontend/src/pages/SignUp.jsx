@@ -36,10 +36,23 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
+            const formData = new FormData()
+            formData.append("firstName", firstName);
+            formData.append("lastName", lastName);
+            formData.append("userName", userName);
+            formData.append("email", email);
+            formData.append("password", password);
+            if (backendImg) {
+
+                formData.append("uploadImage", backendImg);
+            }
+
             const res = await axios.post(
-                serverUrl + "/api/signup",
-                { firstName, lastName, userName, email, password },
-                { withCredentials: true }
+                serverUrl + "/api/signup",formData,
+                
+                { withCredentials: true,
+                    headers:{"Content-Type":"multipart/form-Data"}
+                 }
             );
 
             console.log(res.data);
