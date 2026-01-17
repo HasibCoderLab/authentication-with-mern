@@ -22,7 +22,13 @@ const SignUp = () => {
     const file = useRef(null);
 
 const [frontendImg, setFrontendImg] = useState(dp);
+const [backendImg, setBackendImg] = useState("");
     const handleImg  =(e) =>{
+        let file = e.target.files[0];
+        setBackendImg(file);
+        console.log(file);
+        const img = URL.createObjectURL(file)
+        setFrontendImg(img)
         console.log(e);
         
     } 
