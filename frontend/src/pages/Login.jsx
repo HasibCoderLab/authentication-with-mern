@@ -26,12 +26,11 @@ const Login = () => {
             console.log(data);
             
 
-           await getUserData();
             setUserData(data.user);
-            
-             if (userData) {               
+           await getUserData();
+                                  
                 navigate("/");
-            }
+            
 
             console.log(data);
         } catch (error) {

@@ -60,11 +60,8 @@ const SignUp = () => {
 
             await getUserData();
             setUserData(data.user);
-
-
-            if (userData) {
                 navigate("/");
-            }
+            
 
             console.log(data);
         } catch (error) {
@@ -133,7 +130,8 @@ const SignUp = () => {
                     "
                     >SignUp </button>
 
-                    <p className=" cursor-pointer text-white">Already have  Account ? <span className="text-cyan-400" onClick={() => navigate("/login")}> Login </span>
+                    <p className=" cursor-pointer text-white">Already have  Account ? <span 
+                    className="text-cyan-400" onClick={() => navigate("/login")}> Login </span>
                     </p>
                 </form >
             </div>
