@@ -3,7 +3,7 @@ import dp from "../assets/dp.jpg"
 import { dataContext } from "../context/userContext"
 import axios from "axios"
 
-const login = () => {
+const Login = () => {
 
     let { serverUrl } = useContext(dataContext);
 
@@ -12,7 +12,7 @@ const login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSignUp = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post(
@@ -24,7 +24,9 @@ const login = () => {
             console.log(res.data);
         } catch (error) {
             console.log(error.response?.data || error.message);
+alert(error.response?.data?.message || "Login failed");
         }
+
 
     }
 
@@ -34,7 +36,7 @@ const login = () => {
             <div className='w-[90%] max-w-125 h-125 bg-[#141f1f] rounded flex flex-col justify-center items-center gap-5'>
                 <h1 className="text-white text-[20px] font-semibold "> Log in</h1>
                 {/* ============= Form  =============  */}
-                <form className=' w-full flex flex-col justify-center items-center gap-5' onSubmit={handleSignUp}>
+                <form className=' w-full flex flex-col justify-center items-center gap-5' onSubmit={handleLogin}>
 
 
                     {/* ================ infut field ============= */}
@@ -61,4 +63,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login
