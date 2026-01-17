@@ -3,6 +3,7 @@ import dp from "../assets/dp.jpg"
 import { dataContext } from "../context/userContext"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { useRef } from "react";
 
 const SignUp = () => {
 
@@ -12,11 +13,19 @@ const SignUp = () => {
     let { serverUrl } = useContext(dataContext);
 
     // ========= useStates ============
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [userName, setUserName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const file = useRef(null);
+
+const [frontendImg, setFrontendImg] = useState(dp)
+    const hnadleimg =(e) =>{
+        console.log(e);
+        
+    } 
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -43,10 +52,12 @@ const SignUp = () => {
                 <form className=' w-full flex flex-col justify-center items-center gap-5' onSubmit={handleSignUp}>
 
 
-
+                    <input type="file" name="" id="" hidden ref={file} onChange={() => hnadleimg()} />
+                    {/* ==== img container ========== */}
                     <div className="w-25 h-25 rounded-full bg-white relative ">
-                        <img src={dp} alt="database Picture" className="w-full h-full rounded-full " />
-                        <div className="absolute w-full h-full bg-black rounded-full top-0 opacity-0 hover:opacity-30 flex items-center justify-center text-white text-[40px] font-semibold cursor-pointer ">
+                        <img src={frontendImg} alt="database Picture" className="w-full h-full rounded-full " />
+
+                        <div className="absolute w-full h-full bg-black rounded-full top-0 opacity-0 hover:opacity-30 flex items-center justify-center text-white text-[40px] font-semibold cursor-pointer " onClick={()=>{file.current.click()}}>
                             +
                         </div>
                     </div>
@@ -87,9 +98,9 @@ const SignUp = () => {
                     "
                     >SignUp </button>
 
-                    <p className=" cursor-pointer text-white">Already have  Account ? <span className="text-cyan-400" onClick={() => navigate("/login")}> login </span>
-                    </p>          
-                          </form >
+                    <p className=" cursor-pointer text-white">Already have  Account ? <span className="text-cyan-400" onClick={() => navigate("/login")}> Login </span>
+                    </p>
+                </form >
             </div>
 
         </div>
