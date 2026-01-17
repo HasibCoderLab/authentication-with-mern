@@ -8,7 +8,7 @@ export const dataContext = createContext()
 const UserContext = ({ children }) => {
 
 
-  let [userData, setUserData] = useState("");
+  let [userData, setUserData] = useState({});
   const serverUrl = "http://localhost:8000";
 
   const getUserData = async () => {
